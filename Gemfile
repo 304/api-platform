@@ -1,13 +1,12 @@
 source 'https://rubygems.org'
 
+ruby '2.2.0'
 
 gem 'rails', '4.2.0'
 gem 'grape', '0.10.1'
 gem 'pg'
 gem 'hashie_rails'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
