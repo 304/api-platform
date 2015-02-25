@@ -8,6 +8,7 @@ gem 'pg'
 gem 'hashie_rails'
 gem 'unicorn'
 gem 'rake'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -26,5 +27,7 @@ group :development, :test do
   gem 'spring'
 
   gem 'rspec-rails', '~> 3.0'
+  gem 'factory_girl_rails'
+  gem 'faker'
 end
 
