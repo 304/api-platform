@@ -36,6 +36,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    api-auth (1.2.6)
     arel (6.0.0)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -96,6 +97,7 @@ GEM
     minitest (5.5.0)
     multi_json (1.10.1)
     multi_xml (0.5.5)
+    netrc (0.10.3)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
     pg (0.17.1)
@@ -137,6 +139,9 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.13.0)
     rake (10.4.2)
+    rest-client (1.7.3)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     rspec-core (3.1.7)
       rspec-support (~> 3.1.0)
     rspec-expectations (3.1.2)
@@ -188,6 +193,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  api-auth
   bcrypt (~> 3.1.7)
   byebug
   factory_girl_rails
@@ -198,6 +204,7 @@ DEPENDENCIES
   rails (= 4.2.0)
   rails_12factor
   rake
+  rest-client
   rspec-rails (~> 3.0)
   spring
   unicorn

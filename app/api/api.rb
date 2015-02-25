@@ -1,5 +1,6 @@
 class API < Grape::API
   format :json
+  helpers AuthHelpers
 
   rescue_from Grape::Exceptions::ValidationErrors do |e|
     errors = e.errors.map { |k, v| [k.first, v]}.to_h
@@ -14,5 +15,4 @@ class API < Grape::API
   mount Platform::Ping
   mount Platform::Users
   mount Platform::Tokens
-
 end

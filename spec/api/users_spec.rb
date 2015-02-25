@@ -51,7 +51,7 @@ describe Platform::Users do
     end
 
     context 'Re-registration' do
-      it 'returns error email already in-use' do
+      it 'returns error email alrkeady in-use' do
         send_registration_request(registration_params)
         expect(response.status).to eq(201)
 
@@ -60,6 +60,22 @@ describe Platform::Users do
             email: [Validation::ALREADY_TAKEN],
         )
       end
+    end
+
+  end
+
+  describe 'GET /users' do
+
+    context 'Profile info' do
+      let(:user) { create(:user, :with_token) }
+
+      it 'returns current user info' do
+        signed_get '/users', token: user.tokens.first
+
+        expect(response.status).to eq(200)
+        expect(response.body).to eq({user: {id: user.id, name: user.name, email: user.email}}.to_json)
+      end
+
     end
 
   end
