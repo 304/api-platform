@@ -7,6 +7,7 @@ gem 'grape', '0.10.1'
 gem 'pg'
 gem 'hashie_rails'
 gem 'unicorn'
+gem 'rake'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
