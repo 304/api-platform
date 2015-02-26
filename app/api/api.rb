@@ -13,7 +13,12 @@ class API < Grape::API
     rack_response({errors: errors}.to_json, 400)
   end
 
-  mount Platform::Ping
-  mount Platform::Users
-  mount Platform::Tokens
+  # version header is required
+  before do
+    error!({errors: {version: :not_provided}}, 400) unless headers['Accept-Version']
+  end
+
+  # order is matter
+  mount Platform::ApiV2
+  mount Platform::ApiV1
 end

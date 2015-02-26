@@ -30,6 +30,7 @@ RSpec.configure do |config|
 
   config.include ResponseHelper
   config.include AuthenticationHelper
+  config.include VersionHelper
 
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your

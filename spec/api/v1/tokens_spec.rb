@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Platform::Tokens do
+describe Platform::V1::Tokens do
 
   describe 'POST /token' do
 
@@ -9,7 +9,7 @@ describe Platform::Tokens do
     let(:password) { user.password }
 
     def send_token_request(params = {})
-      post '/tokens', params
+      post_v1 '/tokens', params
     end
 
     def token_request_params(params = {})

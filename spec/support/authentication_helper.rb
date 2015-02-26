@@ -13,7 +13,8 @@ module AuthenticationHelper
     access_id = token.try(:id) || params[:access_id]
     secret_key = token.try(:signature) || params[:secret_key]
     content_type = params[:content_type] || 'application/json'
-    headers = params[:headers] || { 'Content-Type' => content_type }
+    headers = params[:headers] || {}
+    headers['Content-Type'] = content_type unless headers['Content-Type']
     content = params[:content] || ''
 
     request = request_object path, method, content, headers
@@ -31,7 +32,7 @@ module AuthenticationHelper
   end
 
   def request_headers(request)
-    required = ['content-md5', 'date', 'authorization', 'content-type']
+    required = ['content-md5', 'date', 'authorization', 'content-type', 'accept-version']
     required.map { |h| [h, request[h]] }.to_h.compact
   end
 
