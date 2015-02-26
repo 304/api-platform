@@ -4,4 +4,9 @@ FactoryGirl.define do
     signature { Faker::Number.hexadecimal(20) }
     expired_at { 1.day.from_now }
   end
+
+  trait :expired do
+    expired_at { 1.second.ago }
+  end
+
 end

@@ -9,4 +9,8 @@ class User < ActiveRecord::Base
 
   has_many :tokens
 
+  def token_latest?(token)
+    self.tokens.order(created_at: :desc).first == token
+  end
+
 end

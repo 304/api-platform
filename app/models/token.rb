@@ -6,14 +6,16 @@ class Token < ActiveRecord::Base
 
   belongs_to :user
 
-  scope :by_access_id, ->(id) { where(id: id)}
-
   def generate_signature
     self.signature ||= ApiAuth.generate_secret_key
   end
 
   def set_expire_date
-    self.expired_at = 1.day.from_now
+    self.expired_at ||= 1.day.from_now
+  end
+
+  def expired?
+    Time.current > self.expired_at
   end
 
 end

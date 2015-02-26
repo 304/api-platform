@@ -5,7 +5,11 @@ module AuthHelpers
 
   def authenticated?
     token = current_token
-    return ApiAuth.authentic?(request, token.signature) if token
+    if token
+      return false if token.expired?
+      return false unless current_user.token_latest?(token)
+      return ApiAuth.authentic?(request, token.signature) if token
+    end
     false
   end
 
