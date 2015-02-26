@@ -5,21 +5,19 @@ module Platform
 
       desc 'Registration'
       params do
-        requires :name, type: String
-        requires :email, type: String
-        requires :password, type: String
+        requires :name, type: String, desc: 'User name'
+        requires :email, type: String, desc: 'User email'
+        requires :password, type: String, desc: 'User password'
       end
-      post do
+      post rabl: 'users/post' do
         declared_params = declared(params)
-        u = User.create!(declared_params)
-        { user: {id: u.id} }
+        @user = User.create!(declared_params)
       end
 
       desc 'Profile info'
-      get do
+      get rabl: 'users/get' do
         authenticate!
-
-        {user: {id: current_user.id, name: current_user.name, email: current_user.email}}
+        @user = current_user
       end
 
     end

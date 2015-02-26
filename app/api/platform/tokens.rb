@@ -5,17 +5,16 @@ module Platform
 
       desc 'Receive token'
       params do
-        requires :email, type: String
-        requires :password, type: String
+        requires :email, type: String, desc: 'User email'
+        requires :password, type: String, desc: 'User password'
       end
 
-      post do
+      post rabl: 'tokens/post' do
         declared_params = declared(params)
         user = User.find_by_email(declared_params[:email]).try(:authenticate, declared_params[:password])
         error!({errors: Validation::UNAUTHORIZED}, 401) unless user
 
-        token = user.tokens.create!
-        {token: {id: token.id, signature: token.signature, expired_at: token.expired_at}}
+        @token = user.tokens.create!
       end
 
     end
