@@ -1,5 +1,6 @@
 class API < Grape::API
   format :json
+  formatter :json, Grape::Formatter::Rabl
   helpers AuthHelpers
 
   rescue_from Grape::Exceptions::ValidationErrors do |e|
