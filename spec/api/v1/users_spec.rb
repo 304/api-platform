@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Platform::Users do
+describe Platform::V1::Users do
 
   describe 'POST /users' do
 
@@ -10,7 +10,7 @@ describe Platform::Users do
 
 
     def send_registration_request(params = {})
-      post '/users', params
+      post_v1 '/users', params
     end
 
     def registration_params(params = {})
@@ -70,7 +70,7 @@ describe Platform::Users do
       let(:user) { create(:user, :with_token) }
 
       it 'returns current user info' do
-        signed_get '/users', token: user.tokens.first
+        signed_get_v1 '/users', token: user.tokens.first
 
         expect(response.status).to eq(200)
         expect(response.body).to eq({user: {id: user.id, name: user.name, email: user.email}}.to_json)
