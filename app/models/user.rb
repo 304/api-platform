@@ -8,5 +8,4 @@ class User < ActiveRecord::Base
   validates :password, length: {maximum: 100}, presence: true
 
   has_many :tokens
-
 end

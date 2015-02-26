@@ -5,7 +5,9 @@ module AuthHelpers
 
   def authenticated?
     token = current_token
-    return ApiAuth.authentic?(request, token.signature) if token
+    if TokenValidator.new(token).valid?
+      return ApiAuth.authentic?(request, token.signature)
+    end
     false
   end
 
