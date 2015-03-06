@@ -4,6 +4,10 @@ class Token < ActiveRecord::Base
   before_create :generate_signature
   before_create :set_expire_date
 
+  validates :signature, length: {maximum: 100}, presence: true
+  validates :user_id, length: {maximum: 20}, presence: true
+  validates :expired_at, presence: true
+
   belongs_to :user
 
   scope :by_user, ->(user) { where(user: user) }
